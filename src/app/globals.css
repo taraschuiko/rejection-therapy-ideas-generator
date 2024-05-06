@@ -2,14 +2,23 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Jaro", sans-serif;
+  font-family: "VT323", monospace;
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: #ffa71a;
+  background: url("/images/bg.png") #ffa71a;
+  background-size: 500px 300px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  cursor: url("/images/cursor.svg"), auto;
+  font-size: 20px;
+}
+
+a, button {
+  cursor: url("/images/cursor-pointer.svg"), pointer !important;
 }
 
 h1 {
