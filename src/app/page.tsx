@@ -2,8 +2,8 @@
 
 import { useCallback, useState } from "react";
 import styles from "./page.module.scss";
-import { Box, Button, Card, CardContent, Chip, Container, Typography } from "@mui/material";
-import ideas from "./ideas";
+import { Box, Button, Card, CardContent, Chip, Typography } from "@mui/material";
+import ideas, { Ideas } from "./ideas";
 
 const difficultyLevels = ["All", "Easy", "Medium", "Hard"];
 
@@ -12,11 +12,14 @@ export default function Home() {
   const [idea, setIdea] = useState<string | null>(null);
 
   const generateIdea = useCallback(() => {
-    const filteredIdeas = ideas.filter(
-      (idea) => difficulty === "All" || idea.difficulty === difficulty
-    );
+    let filteredIdeas;
+    if (difficulty === "All") {
+      filteredIdeas = [...ideas.easy, ...ideas.medium, ...ideas.hard];
+    } else {
+      filteredIdeas = ideas[difficulty.toLowerCase() as keyof Ideas];
+    }
     const randomIndex = Math.floor(Math.random() * filteredIdeas.length);
-    setIdea(filteredIdeas[randomIndex].idea);
+    setIdea(filteredIdeas[randomIndex]);
   }, [difficulty]);
 
   return (
